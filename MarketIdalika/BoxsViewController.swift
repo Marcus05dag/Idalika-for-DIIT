@@ -16,8 +16,7 @@ class BoxsViewController: UIViewController {
             
             view.backgroundColor = .white
             
-          
-            
+           
             GotoSearch()
             
             
@@ -64,4 +63,25 @@ class BoxsViewController: UIViewController {
         
     }
 
-
+//extension BoxsViewController:UICollectionViewDataSource,UICollectionViewDelegate {
+//    
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return Base.shareds.userDefs.count
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        var cell:UICollectionViewCell!
+//        
+//        if let dcell = collectionView.dequeueReusableCell(withReuseIdentifier: "dcell", for: indexPath) {
+//            cell = dcell
+//        }else {
+//            cell = UICollectionViewCell()
+//        }
+//        cell = Base.shareds.userDefs[indexPath.row]
+//    }
+//    
+//    
+//    
+//    
+//    
+//}

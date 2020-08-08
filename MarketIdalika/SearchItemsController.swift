@@ -24,6 +24,9 @@ class SearchItemsController: UICollectionViewController, UICollectionViewDelegat
         
         fetchItemsInfo()
         configureComponents()
+        
+        
+        
 
 }
 //-----------------------------------------------------------------------------------------
@@ -47,8 +50,8 @@ class SearchItemsController: UICollectionViewController, UICollectionViewDelegat
     }
     
     @objc fileprivate func GotoBoxTarget () {
-        let gotoB = BoxsViewController()
-        let navController = UINavigationController(rootViewController: gotoB)
+        let searchItems = BoxsCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let navController = UINavigationController(rootViewController: searchItems)
         navController.modalPresentationStyle = .fullScreen
         present(navController,animated: true,completion: nil)
     }

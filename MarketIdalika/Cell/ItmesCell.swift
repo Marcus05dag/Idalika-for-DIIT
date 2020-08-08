@@ -8,9 +8,16 @@
 
 import UIKit
 
+
 class ItmesCell: UICollectionViewCell {
     
     
+    
+    
+    let defaults = UserDefaults.standard
+    
+   
+
     // MARK: - Properties
     
 //    let imageView: UIImageView = {
@@ -20,7 +27,8 @@ class ItmesCell: UICollectionViewCell {
 //        return iv
 //    }()
     
-    let imageView = CustomImageView(frame: .zero)
+    
+    var imageView = CustomImageView(frame: .zero)
     
     var items: ItemsNewModel? {
         didSet {
@@ -38,6 +46,11 @@ class ItmesCell: UICollectionViewCell {
             itemLabeltoPrice.textAlignment = .center
             itemLabeltoPrice.lineBreakMode = .byWordWrapping
             
+            
+            
+            
+            //MARK:DEFAULTS
+            
         }
     }
     //MARK:nameContainer
@@ -52,11 +65,30 @@ class ItmesCell: UICollectionViewCell {
         
         view.addSubview(buttonFavorite)
         buttonFavorite.anchor(top: nil, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 120, bottom: 0, right: 0), size: .init(width: 10, height: 50))
-        
+        buttonFavorite.addTarget(self, action: #selector(buttonTargetToFavorite), for: .touchUpInside)
         return view
     }()
     
     //MARK:ButtonFavorite
+    
+    @objc fileprivate func buttonTargetToFavorite() {
+        
+        
+        
+        let id = items?.id
+        let title = items?.title
+        let price = items?.price
+        let image = items?.imageLink
+        print("MAMGMGAG")
+        
+        if !(id != nil) && !title!.isEmpty && !(price != nil)  && !image!.isEmpty {
+            defaults.set(id, forKey: "id")
+            defaults.set(title, forKey: "title")
+            defaults.set(price, forKey: "price")
+            defaults.set(image, forKey: "image")
+        }
+        
+    }
     
     let buttonFavorite:UIButton = {
         let button = UIButton(type: .system)
