@@ -15,11 +15,11 @@ struct ItemsNewModel: Decodable {
     let imageLink: String?
     let title: String?
     let price: Int
+    let favorite:Bool
     
-    
+   
 
     
 }
-
 
 

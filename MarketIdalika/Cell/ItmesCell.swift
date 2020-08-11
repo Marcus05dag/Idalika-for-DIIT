@@ -14,20 +14,12 @@ class ItmesCell: UICollectionViewCell {
     
     
     
-    let defaults = UserDefaults.standard
+     let defaults = UserDefaults.standard
     
    
 
     // MARK: - Properties
-    
-//    let imageView: UIImageView = {
-//        let iv = UIImageView()
-//        iv.backgroundColor = .systemGray
-//        iv.contentMode = .scaleAspectFit
-//        return iv
-//    }()
-    
-    
+
     var imageView = CustomImageView(frame: .zero)
     
     var items: ItemsNewModel? {
@@ -47,12 +39,20 @@ class ItmesCell: UICollectionViewCell {
             itemLabeltoPrice.lineBreakMode = .byWordWrapping
             
             
+                
             
             
-            //MARK:DEFAULTS
+          
             
         }
     }
+  
+    //MARK:MethodFavoriteBool
+    
+    func setFavorite(isFaforite: Bool) {
+        buttonFavorite.setImage(isFaforite ? #imageLiteral(resourceName: "redHeart").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "whiteHeart"), for: .normal)
+    }
+    
     //MARK:nameContainer
     lazy var nameContainerView: UIView = {
         let view = UIView()
@@ -66,39 +66,80 @@ class ItmesCell: UICollectionViewCell {
         view.addSubview(buttonFavorite)
         buttonFavorite.anchor(top: nil, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 120, bottom: 0, right: 0), size: .init(width: 10, height: 50))
         buttonFavorite.addTarget(self, action: #selector(buttonTargetToFavorite), for: .touchUpInside)
+        
+        
+       
+        
         return view
     }()
+//-----------------------------------------------------------------------------------------
+    //MARK:ButtonFavoriteAndUserDefailts
     
-    //MARK:ButtonFavorite
     
     @objc fileprivate func buttonTargetToFavorite() {
+        var names = (defaults.array(forKey: "fav_names") ?? []) as! [String]
+        var ids = (defaults.array(forKey: "fav_ids") ?? []) as! [Int]
+        var prices = (defaults.array(forKey: "fav_prices") ?? []) as! [Int]
+        var images = (defaults.array(forKey: "fav_images") ?? []) as! [String]
         
         
         
         let id = items?.id
+
         let title = items?.title
         let price = items?.price
         let image = items?.imageLink
-        print("MAMGMGAG")
+                
         
-        if !(id != nil) && !title!.isEmpty && !(price != nil)  && !image!.isEmpty {
-            defaults.set(id, forKey: "id")
-            defaults.set(title, forKey: "title")
-            defaults.set(price, forKey: "price")
-            defaults.set(image, forKey: "image")
+        if id != nil && !title!.isEmpty && price != nil  && !image!.isEmpty {
+            
+            if ids.contains(id!) {
+                let index = (defaults.array(forKey: "fav_ids") as! [Int]).firstIndex(of: id!)!
+                
+                print(index)
+                
+                names.remove(at: index)
+                ids.remove(at: index)
+                prices.remove(at: index)
+                images.remove(at: index)
+
+                buttonFavorite.setImage(#imageLiteral(resourceName: "whiteHeart"), for: .normal)
+                
+                
+            } else {
+                names.append(title!)
+                ids.append(id!)
+                prices.append(price!)
+                images.append(image!)
+
+                buttonFavorite.setImage(UIImage(named: "redHeart")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            }
+            
+            defaults.set(names, forKey: "fav_names")
+            defaults.set(ids, forKey: "fav_ids")
+            defaults.set(prices, forKey: "fav_prices")
+            defaults.set(images, forKey: "fav_images")
+            
+            print(ids)
         }
         
     }
     
+//-------------------------------------------------------------------------------------------
+    //MARK:ButtonFavorite
     let buttonFavorite:UIButton = {
         let button = UIButton(type: .system)
-        button.setImage( #imageLiteral(resourceName: "Icon-App-29x29"), for: .normal)
+    
+        button.setImage(UIImage(named: "whiteHeart")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.tintColor = .black
+        
         
         
         
         return button
     }()
+    
+    
     
     
     //MARK:PriceLabel

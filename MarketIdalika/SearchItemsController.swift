@@ -9,7 +9,7 @@
 import UIKit
 
 private let reuseIdentifier = "Cell"
-
+//-----------------------------------------------------------------------------------------
 class SearchItemsController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var itemsNewModel: [ItemsNewModel] = [] // empty array
@@ -24,17 +24,13 @@ class SearchItemsController: UICollectionViewController, UICollectionViewDelegat
         
         fetchItemsInfo()
         configureComponents()
-        
-        
-        
-
 }
+
+
 //-----------------------------------------------------------------------------------------
 //MARK: ConfigureComponents
     
     fileprivate func configureComponents () {
-        
-        
         GotoBox()
         backButton()
     }
@@ -46,7 +42,6 @@ class SearchItemsController: UICollectionViewController, UICollectionViewDelegat
     fileprivate func GotoBox () {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Icon-App-40x40"), style: .plain, target: self, action: #selector(GotoBoxTarget))
         navigationItem.rightBarButtonItem?.tintColor = .black
-        
     }
     
     @objc fileprivate func GotoBoxTarget () {
@@ -97,15 +92,6 @@ class SearchItemsController: UICollectionViewController, UICollectionViewDelegat
     }
 
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        hideTabbar(isHidden: true, duration: 0.4)
-//        navigationController?.setNavigationBarHidden(false, animated: true)
-//    }
-//
-//    override func viewWillDisappear(_ animated: Bool) {
-//        hideTabbar(isHidden: false, duration: 0.4)
-//    }
-
 
 //------------------------------------------------------------------------------------------
     // MARK: UICollectionViewDataSource
@@ -123,9 +109,9 @@ class SearchItemsController: UICollectionViewController, UICollectionViewDelegat
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ItmesCell
-        
         cell.items = itemsNewModel[indexPath.item]
         
+        cell.setFavorite(isFaforite: ((UserDefaults.standard.array(forKey: "fav_ids") as! [Int]?) ?? []).contains(itemsNewModel[indexPath.item].id))
         return cell
     }
 //----------------------------------------------------------------------------------------

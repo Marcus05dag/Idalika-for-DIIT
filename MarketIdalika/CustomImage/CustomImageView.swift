@@ -7,12 +7,13 @@
 //
 
 import UIKit
+// Cach photo
 
 class CustomImageView: UIImageView {
     
     let cache = Service.shared.cache
 
-    let placeholderImage = #imageLiteral(resourceName: "08552_800x480").withRenderingMode(.alwaysOriginal)
+    let placeholderImage = #imageLiteral(resourceName: "box").withRenderingMode(.alwaysOriginal)
     
     // MARK: - Init
     

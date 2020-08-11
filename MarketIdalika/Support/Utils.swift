@@ -10,21 +10,6 @@ import UIKit
 
 extension UIViewController {
     
-    func hideTabbar(isHidden: Bool, duration: TimeInterval) {
-           
-           if let frame = self.tabBarController?.tabBar.frame {
-               let state: CGFloat = isHidden ? 1 : -1
-               let y = frame.origin.y + (frame.size.height * state)
-               UIView.animate(withDuration: duration) {
-                   self.tabBarController?.tabBar.frame = CGRect(x: frame.origin.x, y: y, width: frame.width, height: frame.height)
-               }
-               
-               return
-           }
-           
-           self.tabBarController?.tabBar.isHidden = isHidden
-           
-       }
     
 }
 
@@ -111,3 +96,24 @@ extension UIView {
     
 }
 
+
+
+extension Array {
+    
+    func unique<T:Hashable>(map:((Element)-> (T))) -> [Element] {
+        var set = Set<T>()
+        var arrayOrdered = [Element]()
+        for value in self {
+            if !set.contains(map(value)) {
+                set.insert(map(value))
+                arrayOrdered.append(value)
+            }
+        }
+        return arrayOrdered
+        
+        
+    }
+    
+    
+    
+}
