@@ -23,9 +23,9 @@ class CustomButton: UIButton {
     }
     
     func configure() {
-        layer.cornerRadius = 10
+        layer.cornerRadius = 0
         setTitleColor(.white, for: .normal)
-        titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+        titleLabel?.font = UIFont(name: "SFProDisplay-Bold", size: 14)
         contentHorizontalAlignment = .left
     }
     

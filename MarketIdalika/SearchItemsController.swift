@@ -64,6 +64,10 @@ class SearchItemsController: UICollectionViewController, UICollectionViewDelegat
     
     fileprivate func backButton () {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "  ←  ОДЕЖДА", style: .plain, target: self, action: #selector(backButtonTarget))
+        (navigationItem.leftBarButtonItem as! UIBarButtonItem).setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "SFProDisplay-Regular", size: 16)], for: .normal)
+        (navigationItem.leftBarButtonItem as! UIBarButtonItem).setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "SFProDisplay-Regular", size: 16)], for: .highlighted)
+
+        
         navigationItem.leftBarButtonItem?.tintColor = .black
     }
     

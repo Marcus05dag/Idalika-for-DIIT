@@ -26,8 +26,20 @@ class BoxsCollectionViewController: UICollectionViewController,UICollectionViewD
         
         GotoSearch()
         
+        let img = UIImageView()
+        img.translatesAutoresizingMaskIntoConstraints = false
+        img.heightAnchor.constraint(equalToConstant: 10).isActive = true
+        img.widthAnchor.constraint(equalToConstant: 18).isActive = true
+        img.image = #imageLiteral(resourceName: "Vector")
+        
+        beginShopping.addSubview(img)
+        img.rightAnchor.constraint(equalTo: beginShopping.rightAnchor, constant: -19).isActive = true
+        img.topAnchor.constraint(equalTo: beginShopping.topAnchor, constant: 19).isActive = true
+        img.bottomAnchor.constraint(equalTo: beginShopping.bottomAnchor, constant: -19).isActive = true
+        
         view.addSubview(beginShopping)
-        beginShopping.anchor(top: nil, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 10, bottom: 0, right: 10), size: .init(width: 350, height: 50))
+        beginShopping.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 10, bottom: 10, right: 10), size: .init(width: 350, height: 48))
+        
         beginShopping.layer.cornerRadius = 1
         beginShopping.addTarget(self, action: #selector(begginShoppingTarget), for: .touchUpInside)
         
@@ -51,10 +63,11 @@ class BoxsCollectionViewController: UICollectionViewController,UICollectionViewD
         
         fileprivate func GotoSearch () {
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: "  ← КОРЗИНА", style: .plain, target: self, action: #selector(GotoSearchTarget))
+            (navigationItem.leftBarButtonItem!).setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "SFProDisplay-Regular", size: 16)], for: .normal)
+            (navigationItem.leftBarButtonItem!).setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "SFProDisplay-Regular", size: 16)], for: .highlighted)
+
             navigationItem.leftBarButtonItem?.tintColor = .black
-            
         }
-        
         
         @objc fileprivate func GotoSearchTarget () {
             
@@ -67,7 +80,8 @@ class BoxsCollectionViewController: UICollectionViewController,UICollectionViewD
         }
         
         
-        let beginShopping = CustomButton(backgroundColor: .black, title: "          ←            НАЧАТЬ ПОКУПКИ")
+        let beginShopping = CustomButton(backgroundColor: .black, title: "    НАЧАТЬ ПОКУПКИ")
+    
 
     
     

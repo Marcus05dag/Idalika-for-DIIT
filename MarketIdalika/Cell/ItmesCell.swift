@@ -35,22 +35,16 @@ class ItmesCell: UICollectionViewCell {
             itemLabel.adjustsFontSizeToFitWidth = true
             
             itemLabeltoPrice.text = "\(items!.price) $"
-            itemLabeltoPrice.textAlignment = .center
+            itemLabeltoPrice.textAlignment = .left
             itemLabeltoPrice.lineBreakMode = .byWordWrapping
-            
-            
-                
-            
-            
-          
-            
+
         }
     }
   
     //MARK:MethodFavoriteBool
     
     func setFavorite(isFaforite: Bool) {
-        buttonFavorite.setImage(isFaforite ? #imageLiteral(resourceName: "redHeart").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "whiteHeart"), for: .normal)
+        buttonFavorite.setImage(isFaforite ? #imageLiteral(resourceName: "Union1").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "Union").withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
     //MARK:nameContainer
@@ -61,10 +55,23 @@ class ItmesCell: UICollectionViewCell {
         view.addSubview(itemLabel)
         itemLabel.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor,padding: .init(top: 0, left: 0, bottom: 30, right: 0))
         view.addSubview(itemLabeltoPrice)
-        itemLabeltoPrice.anchor(top: nil, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 30, left: 0, bottom: 10, right: 0), size: .zero)
+        //itemLabeltoPrice.anchor(top: nil, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 30, left: 0, bottom: 10, right: 0), size: .zero)
+        
+        //itemLabeltoPrice.topAnchor.constraint(equalTo: itemLabeltoPrice.topAnchor).isActive = true
+        itemLabeltoPrice.translatesAutoresizingMaskIntoConstraints = false
+        itemLabeltoPrice.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        itemLabeltoPrice.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        itemLabeltoPrice.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        itemLabeltoPrice.heightAnchor.constraint(equalToConstant: 24).isActive = true
         
         view.addSubview(buttonFavorite)
-        buttonFavorite.anchor(top: nil, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 120, bottom: 0, right: 0), size: .init(width: 10, height: 50))
+        buttonFavorite.topAnchor.constraint(equalTo: itemLabeltoPrice.topAnchor).isActive = true
+        buttonFavorite.bottomAnchor.constraint(equalTo: itemLabeltoPrice.bottomAnchor).isActive = true
+        buttonFavorite.rightAnchor.constraint(equalTo: itemLabeltoPrice.rightAnchor).isActive = true
+        buttonFavorite.widthAnchor.constraint(equalTo: buttonFavorite.heightAnchor).isActive = true
+
+
+        //buttonFavorite.anchor(top: nil, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 120, bottom: 0, right: 0), size: .init(width: 10, height: 50))
         buttonFavorite.addTarget(self, action: #selector(buttonTargetToFavorite), for: .touchUpInside)
         
         
@@ -103,8 +110,9 @@ class ItmesCell: UICollectionViewCell {
                 prices.remove(at: index)
                 images.remove(at: index)
 
-                buttonFavorite.setImage(#imageLiteral(resourceName: "whiteHeart"), for: .normal)
-                
+                buttonFavorite.setImage(#imageLiteral(resourceName: "Union").withRenderingMode(.alwaysOriginal), for: .normal)
+                buttonFavorite.imageView?.tintColor = .lightGray
+
                 
             } else {
                 names.append(title!)
@@ -112,7 +120,7 @@ class ItmesCell: UICollectionViewCell {
                 prices.append(price!)
                 images.append(image!)
 
-                buttonFavorite.setImage(UIImage(named: "redHeart")?.withRenderingMode(.alwaysOriginal), for: .normal)
+                buttonFavorite.setImage(#imageLiteral(resourceName: "Union1").withRenderingMode(.alwaysOriginal), for: .normal)
             }
             
             defaults.set(names, forKey: "fav_names")
@@ -130,10 +138,9 @@ class ItmesCell: UICollectionViewCell {
     let buttonFavorite:UIButton = {
         let button = UIButton(type: .system)
     
-        button.setImage(UIImage(named: "whiteHeart")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        button.tintColor = .black
-        
-        
+        button.setImage(#imageLiteral(resourceName: "Union").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 5, left: 3, bottom: 4, right: 3)
+        button.translatesAutoresizingMaskIntoConstraints = false
         
         
         return button
@@ -146,9 +153,10 @@ class ItmesCell: UICollectionViewCell {
     let itemLabeltoPrice: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont(name: "SFProDisplay-Bold", size: 18)
+
         label.text = "Макасины"
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.numberOfLines = 0
         label.lineBreakMode = .byTruncatingTail
         return label
@@ -161,7 +169,7 @@ class ItmesCell: UICollectionViewCell {
     let itemLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont(name: "SFProDisplay-Regular", size: 18)
         label.text = "Макасины"
         label.numberOfLines = 0
         label.lineBreakMode = .byTruncatingTail
@@ -172,7 +180,7 @@ class ItmesCell: UICollectionViewCell {
         super.init(frame: frame)
         
         backgroundColor = .red
-        self.layer.cornerRadius = 10
+        //self.layer.cornerRadius = 10
         self.clipsToBounds = true
         
         configureUIcomponents()

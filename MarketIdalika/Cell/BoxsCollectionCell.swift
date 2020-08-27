@@ -111,7 +111,7 @@ class BoxsCollectionCell: UICollectionViewCell {
                 defaults.set(images, forKey: "fav_images")
                 
                 
-                buttonFavorite.setImage(UIImage(named: "redHeart")?.withRenderingMode(.alwaysOriginal), for: .normal)
+                buttonFavorite.setImage(#imageLiteral(resourceName: "Union1").withRenderingMode(.alwaysOriginal), for: .normal)
                 
                 
             }
@@ -123,7 +123,7 @@ class BoxsCollectionCell: UICollectionViewCell {
         let buttonFavorite:UIButton = {
             let button = UIButton(type: .system)
         
-            button.setImage(UIImage(named: "whiteHeart")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            button.setImage(#imageLiteral(resourceName: "Union").withRenderingMode(.alwaysOriginal), for: .normal)
             button.tintColor = .black
             
             
@@ -172,9 +172,10 @@ class BoxsCollectionCell: UICollectionViewCell {
         }
         
         fileprivate func configureUIcomponents() {
+            imageView.contentMode = .scaleAspectFit
             
             addSubview(imageView)
-            imageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .zero, size: .init(width: 0, height: self.frame.height - 200))
+            imageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: UIEdgeInsets(top: 64, left: 64, bottom: 64, right: 64), size: .init(width: 0, height: self.frame.height - 200))
             
             addSubview(nameContainerView)
             nameContainerView.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .zero, size: .init(width: 0, height: 100))
