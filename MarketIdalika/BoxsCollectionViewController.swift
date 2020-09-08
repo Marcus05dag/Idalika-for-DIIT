@@ -62,7 +62,7 @@ class BoxsCollectionViewController: UICollectionViewController,UICollectionViewD
         
         
         fileprivate func GotoSearch () {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "  ← КОРЗИНА", style: .plain, target: self, action: #selector(GotoSearchTarget))
+            navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Выбор напраленияnew"), style: .plain, target: self, action: #selector(GotoSearchTarget))
             (navigationItem.leftBarButtonItem!).setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "SFProDisplay-Regular", size: 16)], for: .normal)
             (navigationItem.leftBarButtonItem!).setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "SFProDisplay-Regular", size: 16)], for: .highlighted)
 
@@ -74,7 +74,8 @@ class BoxsCollectionViewController: UICollectionViewController,UICollectionViewD
             let searchItems = SearchItemsController(collectionViewLayout: UICollectionViewFlowLayout())
             let navController = UINavigationController(rootViewController: searchItems)
             navController.modalPresentationStyle = .fullScreen
-            present(navController,animated: true , completion: nil)
+            dismiss(animated: true , completion: nil)
+            
             
             
         }

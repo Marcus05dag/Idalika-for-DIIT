@@ -18,12 +18,15 @@ class LoginScreen: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configureUIcomponents()
+        
+        
     }
-    
+//
 //    override func viewWillAppear(_ animated: Bool) {
-//        navigationController?.setNavigationBarHidden(true, animated: true)
+//        super.viewWillAppear(animated)
+//        self.title = "IDILLIKA"
 //    }
-    
+//
     fileprivate func configureUIcomponents() {
         calltoActionButton.titleLabel?.font = UIFont(name: "SFProDisplay-Bold",size: 14)
         view.addSubview(calltoActionButton)

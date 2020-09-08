@@ -32,7 +32,11 @@ class SearchItemsController: UICollectionViewController, UICollectionViewDelegat
     
     fileprivate func configureComponents () {
         GotoBox()
-        backButton()
+       backButton()
+    
+        
+          
+        
     }
 //-----------------------------------------------------------------------------------------
 //MARK: Button
@@ -53,24 +57,42 @@ class SearchItemsController: UICollectionViewController, UICollectionViewDelegat
     
     
     //MARK:BackButtonTarget
+  
+    fileprivate func backButton () {
+        
+     
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Выбор напраления"), style: .plain, target: self, action: #selector(backButtonTarget))
+        
+       
+        
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Vector (1)"), style: .plain, target: self, action: #selector(backButtonTarget))
+
+        (navigationItem.leftBarButtonItem as! UIBarButtonItem).setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "SFProDisplay-Regular", size: 16)], for: .normal)
+
+        (navigationItem.leftBarButtonItem as! UIBarButtonItem).setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "SFProDisplay-Regular", size: 16)], for: .highlighted)
+
+
+
+
+
+
+
+        navigationItem.leftBarButtonItem?.tintColor = .black
+    
+    }
+    
+     
     @objc fileprivate func backButtonTarget () {
         
         let backToLS = LoginScreen()
         let navController = UINavigationController(rootViewController: backToLS)
         navController.modalPresentationStyle = .fullScreen
-        present(navController,animated: true,completion: nil)
+        dismiss(animated: true,completion: nil)
         
     }
     
-    fileprivate func backButton () {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "  ←  ОДЕЖДА", style: .plain, target: self, action: #selector(backButtonTarget))
-        (navigationItem.leftBarButtonItem as! UIBarButtonItem).setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "SFProDisplay-Regular", size: 16)], for: .normal)
-        (navigationItem.leftBarButtonItem as! UIBarButtonItem).setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "SFProDisplay-Regular", size: 16)], for: .highlighted)
 
-        
-        navigationItem.leftBarButtonItem?.tintColor = .black
-    }
-    
     
 //-----------------------------------------------------------------------------------------
     // MARK: - API
